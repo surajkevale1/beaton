@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fantasy App - Live Match</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+      padding-bottom: 60px; /* Prevent bottom menu overlap */
+    }
+
+    header {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .games-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      background-color: white;
+      padding: 0.5rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .games-options button {
+      background-color: #e0e7ff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0.25rem;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .games-options button:hover {
+      background-color: #c7d2fe;
+      transform: scale(1.05);
+    }
+
+    .games-options button:active {
+      transform: scale(0.95);
+    }
+
+    .filters {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.5rem 1rem;
+    }
+
+    .filters select {
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+
+    .match-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      margin: 1rem;
+      text-align: center;
+    }
+
+    .teams {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+
+    .vs {
+      margin: 0 10px;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .status {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: white;
+      padding: 0.75rem 0;
+      border-top: 1px solid #ccc;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .bottom-nav div {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #1e3a8a;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .bottom-nav div:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 600px) {
+      .teams {
+        flex-direction: column;
+        font-size: 1rem;
+      }
+
+      .vs {
+        margin: 0.5rem 0;
+      }
+
+      .filters {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo"></div>
+    <div class="title">Fantasy Cricket Live</div>
+  </header>
+
+  <main>
+    <div class="games-options">
+      <button onclick="redirectToDream11('https://www.dream11.com/')">Cricket</button>
+      <button onclick="redirectToDream11()">Football</button>
+      <button onclick="redirectToDream11()">Basketball</button>
+      <button onclick="redirectToDream11()">Kabaddi</button>
+    </div>
+
+    <div class="filters">
+      <select>
+        <option>All Matches</option>
+        <option selected>Live</option>
+        <option>Upcoming</option>
+        <option>Completed</option>
+      </select>
+    </div>
+
+    <div class="match-card">
+      <div class="teams">
+        <div class="team">Mumbai Warriors</div>
+        <div class="vs">VS</div>
+        <div class="team">Chennai Titans</div>
+      </div>
+      <div class="status" id="status">LIVE NOW</div>
+    </div>
+
+    <div class="match-card">
+      <div class="teams">
+        <div class="team">Delhi Kings</div>
+        <div class="vs">VS</div>
+        <div class="team">Hyderabad Hawks</div>
+      </div>
+      <div class="status">UPCOMING - 5:00 PM</div>
+    </div>
+
+    <div class="match-card">
+      <div class="teams">
+        <div class="team">Bangalore Strikers</div>
+        <div class="vs">VS</div>
+        <div class="team">Kolkata Riders</div>
+      </div>
+      <div class="status">UPCOMING - 8:00 PM</div>
+    </div>
+  </main>
+
+  <div class="bottom-nav">
+    <div onclick="redirectToDream11()">Home</div>
+    <div onclick="redirectToDream11()">My Matches</div>
+    <div onclick="redirectToDream11()">Games</div>
+    <div onclick="redirectToDream11()">Wallet</div>
+    <div onclick="redirectToDream11()">Profile</div>
+  </div>
+
+  <script>
+    const status = document.getElementById("status");
+    setInterval(() => {
+      const time = new Date().toLocaleTimeString();
+      status.innerText = `LIVE - Updated at ${time}`;
+    }, 10000);
+
+    function redirectToDream11(url) {
+      window.location.href = url ? `https://${url}` : "https://www.dream11.com";
+    }
+  </script>
+</body>
+
+</html>
